@@ -58,8 +58,9 @@ void Hamiltanian::show() const
 
 void Hamiltanian::kron(const Hamiltanian& HL, const Hamiltanian& HR, const double& coup)
 {
+        clear();
 
-        _System.kron(HL.System(), HR.SysEye());
+        _System.kron(HL._System, HR._SysEye);
         OP systemp;
         systemp.kron(HL.SysEye(), HR.System());
         _System.add(systemp);
