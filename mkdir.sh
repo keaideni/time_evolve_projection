@@ -5,8 +5,8 @@ mkdir data
 mkdir result
 
 cat > data/QNosave.txt <<EOF
-LatticeSize= 10
-ParticleNo= 5
+LatticeSize= 4
+ParticleNo= 2
 SiteNo= 2
 DeltaQL= 2
 DeltaQR= 3

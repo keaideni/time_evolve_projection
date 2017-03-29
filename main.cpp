@@ -48,15 +48,15 @@ int main(int argc, char* argv[])
                 ofstream overlap("./result/overlap");
                 overlap<<gl<<"\t"<<H0.groundstate().adjoint()*H0.groundstate()
                         <<"\t"<<H0.groundstate().adjoint()*H0.MatH()
-                                *H0.groundstate()<<endl;
+                                *H0.groundstate()/para.ParticleNo()<<endl;
                 for(int i=0; i<everygroup; ++i)
                 {
                         gl=0.003+0.0005*(i+1);
                         gr=0.03-gl;
                         Mat H(para, gl, gr);
-                        overlap<<gl<<"\t"<<H0.groundstate().adjoint()*H.groundstate()
-                                <<"\t"<<H0.groundstate().adjoint()*H.MatH()
-                                *H0.groundstate()<<endl;
+                        overlap<<gl<<"\t"<<abs(H0.groundstate().adjoint()*H.groundstate())
+                                <<"\t"<<(H0.groundstate().adjoint()*H.MatH()
+                                *H0.groundstate())/para.ParticleNo()<<endl;
 
                 }
                 for(int id=1; id<numprocess; ++id)
@@ -112,8 +112,9 @@ int main(int argc, char* argv[])
                         gl((i-myid*everygroup))=0.003+0.0005*(i+1);
                         double gr=0.03-gl[i-myid*everygroup];
                         Mat H(para, gl[i-myid*everygroup], gr);
-                        overlap[i-myid*everygroup]=(baseground.adjoint()*H.groundstate());
+                        overlap[i-myid*everygroup]=abs((baseground.adjoint()*H.groundstate()));
                         energy(i-myid*everygroup)=baseground.adjoint()*H.MatH()*baseground;
+                        energy(i-myid*everygroup)/=para.ParticleNo();
 
                         
                         
