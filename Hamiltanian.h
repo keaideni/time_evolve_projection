@@ -25,6 +25,7 @@ private:
         OP _SysCDagR;
         OP _SysCL;
         OP _SysCDagL;
+        OP _Edgepro;
 
 public:
         Hamiltanian(){};
