@@ -506,6 +506,7 @@ void OP::add(const OP& a)
 
 void OP::time(const OP& a, const OP& b)
 {
+        clear();
         if (a._QDim.size() != b._QDim.size())
         {
                 std::cerr << "the Q dim size doesn't match!" << std::endl;
